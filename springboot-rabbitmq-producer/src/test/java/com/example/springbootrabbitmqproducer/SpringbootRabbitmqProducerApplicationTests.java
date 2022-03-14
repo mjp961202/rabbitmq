@@ -20,7 +20,7 @@ class SpringbootRabbitmqProducerApplicationTests {
 
     @Test
     public void test() {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE, "item.insert", "insert消息");
+        rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE, "item.insert.tt", "insert消息");
         rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE, "item.update", "update消息");
         rabbitTemplate.convertAndSend(RabbitMQConfig.ITEM_TOPIC_EXCHANGE, "item.select.test", "select.test消息");
     }

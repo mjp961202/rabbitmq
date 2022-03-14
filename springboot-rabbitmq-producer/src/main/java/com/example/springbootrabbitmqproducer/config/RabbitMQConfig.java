@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
     public static final String ITEM_TOPIC_EXCHANGE ="item_topic_exchange";
     public static final String ITEM_QUEUE ="item_queue";
+    public static final String ITEM_QUEUE1 ="item_queue1";
 
     @Bean(ITEM_TOPIC_EXCHANGE)
     public Exchange topicExchange(){
@@ -20,8 +21,18 @@ public class RabbitMQConfig {
         return QueueBuilder.durable(ITEM_QUEUE).build();
     }
 
+    @Bean(ITEM_QUEUE1)
+    public Queue topicQueue1(){
+        return QueueBuilder.durable(ITEM_QUEUE1).build();
+    }
+
     @Bean
     public Binding itemQueueExchange(@Qualifier(ITEM_QUEUE) Queue queue,@Qualifier(ITEM_TOPIC_EXCHANGE) Exchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with("item.#").noargs();
+    }
+
+    @Bean
+    public Binding itemQueueExchange1(@Qualifier(ITEM_QUEUE1) Queue queue,@Qualifier(ITEM_TOPIC_EXCHANGE) Exchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("item.*").noargs();
     }
 }
