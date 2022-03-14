@@ -57,6 +57,7 @@ public class AccountInfoController {
             }
         } catch (Exception e) {
             redisService.remove(Constant.TEST_QUEUE + correlationData.getId());
+            System.out.println("系统异常！转账失败！");
         }
     }
 

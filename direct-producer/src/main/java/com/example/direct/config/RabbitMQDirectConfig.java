@@ -11,27 +11,27 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQDirectConfig {
 
     @Bean
-    public DirectExchange directExchange(){
-        return new DirectExchange("direct_exchange",true,false);
+    public DirectExchange directExchange() {
+        return new DirectExchange("direct_exchange", true, false);
     }
 
     @Bean
-    public Queue directQueue1(){
-        return new Queue("direct_queue1",true);
+    public Queue directQueue1() {
+        return new Queue("direct_queue1", true);
     }
 
     @Bean
-    public Queue directQueue2(){
-        return new Queue("direct_queue2",true);
+    public Queue directQueue2() {
+        return new Queue("direct_queue2", true);
     }
 
     @Bean
-    public Binding bindingBuilder1(){
+    public Binding bindingBuilder1() {
         return BindingBuilder.bind(directQueue1()).to(directExchange()).with("direct1");
     }
 
     @Bean
-    public Binding bindingBuilder2(){
+    public Binding bindingBuilder2() {
         return BindingBuilder.bind(directQueue2()).to(directExchange()).with("direct2");
     }
 }
